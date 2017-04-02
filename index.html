@@ -1,15 +1,66 @@
 <!DOCTYPE html>
 <html>
 <body>
+    <div id='container'>
+      <h1>TravelEZ</h1>
+      <form action="javascript:foo()">
+        <label for="name">Restaurant Name</label>
+        <input type="text" id='name'/> <br>
 
-<h1>My First Heading</h1>
+        <label for="smoothSurface">Smooth Ground Surface (smooth surface rather than uneven brick/gravel)</label>
+  		<input type="checkbox" id="smoothSurface"><br>
 
-<p>My first paragraph.</p>
+        <label for="stepFreeExterior">Step Free Access (leveled/ramped/lift access to main entrance)</label>
+  		<input type="checkbox" id="stepFreeExterior"><br>
 
+        <label for="designatedParking">Designated Accessible Parking (at least one designated "Handicap Parking Space")</label>
+  		<input type="checkbox" id="designatedParking"><br>
+
+        <label for="designatedParking20feet">Less than 20 feet from entrance</label>
+  		<input type="checkbox" id="designatedParking20feet"><br>
+
+        <label for="dropOff">Drop-Off Area (ability to unload car passenger near entrance outside lane of traffic)</label>
+  		<input type="checkbox" id="dropOff"><br>
+
+        <label for="dropOff20feet">Less than 20 feet from entrance</label>
+  		<input type="checkbox" id="dropOff20feet"><br>
+
+        <label for="waitingArea">Seating Available in Waiting Area (at least one seat)</label>
+  		<input type="checkbox" id="waitingArea"><br>
+
+        <label for="accessibleTables">Accessible Tables/Seats (at least 25% are standard table height with removable chairs)</label>
+  		<input type="checkbox" id="accessibleTables"><br>
+
+        <label for="spaciousInterior">Spacious Interior (wheelchair can comfortably navigate between tables/walls = 3 ft. space)</label>
+  		<input type="checkbox" id="spaciousInterior"><br>
+
+        <label for="stepFreeInterior">Step Free Layout (does not require stairs to navigate entire interior)</label>
+  		<input type="checkbox" id="stepFreeInterior"><br>
+
+        <label for="seatingLevel">Seating on More than One Level</label>
+  		<input type="checkbox" id="seatingLevel"><br>
+
+        <label for="seatingLevelStepFree">Step Free Access to Other Floors (other floors are accessible by elevator, ramp, or lift)</label>
+  		<input type="checkbox" id="seatingLevelStepFree"><br>
+
+        <label for="bathroom">Handicap Accessible Bathroom (rail, lowered stalls/urinals/sinks, spacious stall)</label>
+  		<input type="checkbox" id="bathroom"><br>
+
+        <label for="AARP">AARP certified</label>
+  		<input type="checkbox" id="AARP"><br>
+
+        <label for="comment">Comments</label><br>
+		<textarea type="text" id="comment"></textarea><br>
+
+        <input type="submit" value="submit" />
+      </form>
+    </div>
 </body>
+
 <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
 <script>
   // Initialize Firebase
+
   var config = {
     apiKey: "AIzaSyAyeO_5PVV0JCkKN8phWxlzrpRM2TNwCF0",
     authDomain: "travelez-9cc9b.firebaseapp.com",
@@ -18,5 +69,80 @@
     messagingSenderId: "99913722043"
   };
   firebase.initializeApp(config);
+  // Get a reference to the database service
+  var database = firebase.database();
+
+  
+  function foo() {	  	
+
+		var d = new Date();
+		var id = d.getTime();
+		var name = document.getElementById('name').value;
+		var smoothSurface = document.getElementById('smoothSurface').checked;
+		var stepFreeExterior = document.getElementById('stepFreeExterior').checked;
+		var designatedParking = document.getElementById('designatedParking').checked;
+		if (designatedParking == false) {
+			var designatedParking20feet = document.getElementById('designatedParking20feet').checked;
+		} else {
+			var designatedParking20feet = false;
+		}
+		var dropOff = document.getElementById('dropOff').checked;
+		if (dropOff == false) {
+			var dropOff20feet = document.getElementById('dropOff20feet').checked;
+		} else {
+			var dropOff20feet = false;
+		}
+		var waitingArea = document.getElementById('waitingArea').checked;
+		var smoothSurface = document.getElementById('smoothSurface').checked;
+		var accessibleTables = document.getElementById('accessibleTables').checked;
+		var spaciousInterior = document.getElementById('spaciousInterior').checked;
+		var stepFreeInterior = document.getElementById('stepFreeInterior').checked;
+		var seatingLevel = document.getElementById('seatingLevel').checked;
+		if (seatingLevel == false) {
+			var seatingLevelStepFree = document.getElementById('seatingLevelStepFree').checked;
+		} else {
+			var seatingLevelStepFree = false;
+		}
+		var bathroom = document.getElementById('bathroom').checked;
+		var AARP = document.getElementById('AARP').checked;
+		var comment = document.getElementById('comment').value;
+
+		// console.log(name);
+		// console.log(smoothSurface);
+		// console.log(stepFreeExterior);
+		// console.log(designatedParking);
+		// console.log(dropOff);
+		// console.log(dropOff20feet);
+		// console.log(waitingArea);
+		// console.log(accessibleTables);
+		// console.log(spaciousInterior);
+		// console.log(stepFreeInterior);
+		// console.log(seatingLevel);
+		// console.log(seatingLevelStepFree);
+		// console.log(bathroom);
+		// console.log(comment);
+		// console.log(AARP);
+
+	  firebase.database().ref(id+name).set({
+	    name: name,
+	    smoothSurface: smoothSurface,
+	    stepFreeExterior : stepFreeExterior,
+	    designatedParking : designatedParking,
+	    dropOff : dropOff,
+	    dropOff20feet : dropOff20feet,
+	    waitingArea : waitingArea,
+	    accessibleTables : accessibleTables,
+	    spaciousInterior : spaciousInterior,
+	    stepFreeInterior : stepFreeInterior,
+	    seatingLevel : seatingLevel,
+	    seatingLevelStepFree : seatingLevelStepFree,
+	    bathroom : bathroom,
+	    AARP : AARP,
+	    comment : comment
+	  });
+	  location.reload();
+	  return true;
+	}
+
 </script>
 </html>
