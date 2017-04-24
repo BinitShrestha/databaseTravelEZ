@@ -28,8 +28,8 @@
         <label for="dropOff20feet">Less than 20 feet from entrance</label>
   		<input type="checkbox" id="dropOff20feet"><br>
 
-        <label for="waitingArea">Seating Available in Waiting Area (at least one seat)</label>
-  		<input type="checkbox" id="waitingArea"><br>
+<!--         <label for="waitingArea">Seating Available in Waiting Area (at least one seat)</label>
+  		<input type="checkbox" id="waitingArea"><br> -->
 
         <label for="accessibleTables">Accessible Tables/Seats (at least 25% are standard table height with removable chairs)</label>
   		<input type="checkbox" id="accessibleTables"><br>
@@ -96,7 +96,7 @@
 		} else {
 			var dropOff20feet = false;
 		}
-		var waitingArea = document.getElementById('waitingArea').checked;
+		// var waitingArea = document.getElementById('waitingArea').checked;
 		var smoothSurface = document.getElementById('smoothSurface').checked;
 		var accessibleTables = document.getElementById('accessibleTables').checked;
 		var spaciousInterior = document.getElementById('spaciousInterior').checked;
@@ -136,7 +136,7 @@
 	    designatedParking20feet : designatedParking20feet, 
 	    dropOff : dropOff,
 	    dropOff20feet : dropOff20feet,
-	    waitingArea : waitingArea,
+	    // waitingArea : waitingArea,
 	    accessibleTables : accessibleTables,
 	    spaciousInterior : spaciousInterior,
 	    stepFreeInterior : stepFreeInterior,
